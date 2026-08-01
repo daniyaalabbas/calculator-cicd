@@ -2,7 +2,8 @@ name: Calculator CD Pipeline
 
 on:
   workflow_run:
-    workflows: ["Calculator CI Pipeline"]
+    workflows:
+      - Calculator CI Pipeline
     types:
       - completed
 
@@ -16,10 +17,14 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Update Deployment Image
+      - name: Verify Cluster
         run: |
-          kubectl set image deployment/calculator-app \
-          calculator=daniyaalabbas/calculator-app:latest
+          kubectl cluster-info
+          kubectl get nodes
+
+      - name: Restart Kubernetes Deployment
+        run: |
+          kubectl rollout restart deployment/calculator-app
 
       - name: Wait for Rollout
         run: |
