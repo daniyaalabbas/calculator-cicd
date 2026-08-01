@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     return """
-    <h1>Calculator App</h1>
+    <h1>Calculator App - Version 2</h1>
     <form action="/calculate" method="get">
         Number 1: <input type="number" name="a"><br><br>
         Number 2: <input type="number" name="b"><br><br>
