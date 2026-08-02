@@ -6,15 +6,14 @@ app = Flask(__name__)
 APP_TITLE = os.getenv("APP_TITLE", "Calculator App")
 ENVIRONMENT = os.getenv("ENVIRONMENT", "Development")
 
-@app.route("/")
-
 @app.route("/health")
 def health():
-    return "OK", 200
+    return "FAILED", 500
 
 
 
 
+@app.route("/")
 def home():
     return f"""
     <h1>{APP_TITLE}</h1>
