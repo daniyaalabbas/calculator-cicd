@@ -4,5 +4,5 @@ metadata:
   name: calculator-config
 
 data:
-  APP_TITLE: "Abbas DevOps Calculator 🚀"
+  APP_TITLE: "Ai - Calculator 🚀"
   ENVIRONMENT: "Development"
