@@ -5,7 +5,7 @@ metadata:
   name: calculator-app
 
 spec:
-  replicas: 2
+  replicas: 6
 
   selector:
     matchLabels:
@@ -19,8 +19,21 @@ spec:
     spec:
       containers:
       - name: calculator
-        image: daniyaalabbas/calculator-app:v1
+        image: daniyaalabbas/calculator-app:latest
         imagePullPolicy: Always
 
         ports:
         - containerPort: 5000
+
+        env:
+        - name: APP_TITLE
+          valueFrom:
+            configMapKeyRef:
+              name: calculator-config
+              key: APP_TITLE
+
+        - name: ENVIRONMENT
+          valueFrom:
+            configMapKeyRef:
+              name: calculator-config
+              key: ENVIRONMENT

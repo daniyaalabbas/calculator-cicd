@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: calculator-config
+
+data:
+  APP_TITLE: "Abbas DevOps Calculator 🚀"
+  ENVIRONMENT: "Development"
