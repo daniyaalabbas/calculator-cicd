@@ -7,6 +7,9 @@ APP_TITLE = os.getenv("APP_TITLE", "Calculator App")
 ENVIRONMENT = os.getenv("ENVIRONMENT", "Development")
 
 
+@app.route("/health")
+def health():
+    return "OK", 200
 
 @app.route("/")
 def home():
