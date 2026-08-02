@@ -37,3 +37,33 @@ spec:
             configMapKeyRef:
               name: calculator-config
               key: ENVIRONMENT
+
+        - name: ADMIN_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: calculator-secret
+              key: ADMIN_USERNAME
+
+        - name: ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: calculator-secret
+              key: ADMIN_PASSWORD
+
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 15
+          periodSeconds: 10
+          timeoutSeconds: 2
+          failureThreshold: 3
+
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 2
+          failureThreshold: 3
