@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: {{ .Release.Name }}
+
+spec:
+  replicas: {{ .Values.replicaCount }}
+
+  selector:
+    matchLabels:
+      app: calculator
+
+  template:
+    metadata:
+      labels:
+        app: calculator
+
+    spec:
+      containers:
+      - name: calculator
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+
+        ports:
+        - containerPort: 5000
+
+        resources:
+{{ toYaml .Values.resources | indent 10 }}
+
+        env:
+        - name: APP_TITLE
+          value: {{ .Values.config.APP_TITLE | quote }}
+
+        - name: ENVIRONMENT
+          value: {{ .Values.config.ENVIRONMENT | quote }}
+
+        - name: ADMIN_USERNAME
+          value: {{ .Values.secret.ADMIN_USERNAME | quote }}
+
+        - name: ADMIN_PASSWORD
+          value: {{ .Values.secret.ADMIN_PASSWORD | quote }}
+
+        livenessProbe:
+{{ toYaml .Values.livenessProbe | indent 10 }}
+
+        readinessProbe:
+{{ toYaml .Values.readinessProbe | indent 10 }}

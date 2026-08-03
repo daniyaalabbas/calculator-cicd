@@ -1,0 +1,46 @@
+replicaCount: 2
+
+image:
+  repository: daniyaalabbas/calculator-app
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: NodePort
+  port: 5000
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "128Mi"
+  limits:
+    cpu: "500m"
+    memory: "256Mi"
+
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 5000
+  initialDelaySeconds: 15
+  periodSeconds: 10
+
+readinessProbe:
+  httpGet:
+    path: /health
+    port: 5000
+  initialDelaySeconds: 5
+  periodSeconds: 5
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50
+
+config:
+  APP_TITLE: "AI - Calculator 🚀"
+  ENVIRONMENT: "Development"
+
+secret:
+  ADMIN_USERNAME: admin
+  ADMIN_PASSWORD: password123
