@@ -17,6 +17,14 @@ resources:
     cpu: "500m"
     memory: "256Mi"
 
+config:
+  APP_TITLE: "AI - Calculator 🚀"
+  ENVIRONMENT: "Development"
+
+secret:
+  ADMIN_USERNAME: admin
+  ADMIN_PASSWORD: password123
+
 livenessProbe:
   httpGet:
     path: /health
@@ -30,17 +38,3 @@ readinessProbe:
     port: 5000
   initialDelaySeconds: 5
   periodSeconds: 5
-
-autoscaling:
-  enabled: true
-  minReplicas: 2
-  maxReplicas: 10
-  targetCPUUtilizationPercentage: 50
-
-config:
-  APP_TITLE: "AI - Calculator 🚀"
-  ENVIRONMENT: "Development"
-
-secret:
-  ADMIN_USERNAME: admin
-  ADMIN_PASSWORD: password123
