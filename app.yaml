@@ -1,0 +1,139 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  creationTimestamp: "2026-08-03T13:07:50Z"
+  generation: 130
+  name: calculator-app
+  namespace: argocd
+  resourceVersion: "75906"
+  uid: 08b75ce7-d2cf-4b10-87d1-3466216839fb
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: calculator-chart
+    repoURL: https://github.com/daniyaalabbas/calculator-cicd.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      enabled: true
+      prune: true
+      selfHeal: true
+status:
+  controllerNamespace: argocd
+  health:
+    lastTransitionTime: "2026-08-03T13:36:19Z"
+    status: Healthy
+  history:
+  - deployStartedAt: "2026-08-03T13:07:55Z"
+    deployedAt: "2026-08-03T13:07:56Z"
+    id: 0
+    initiatedBy:
+      automated: true
+    revision: 7bfa99ab98b36a698546fde11fc38cb5d167a789
+    source:
+      path: calculator-chart
+      repoURL: https://github.com/daniyaalabbas/calculator-cicd.git
+      targetRevision: main
+  - deployStartedAt: "2026-08-03T13:12:50Z"
+    deployedAt: "2026-08-03T13:12:51Z"
+    id: 1
+    initiatedBy:
+      automated: true
+    revision: cd17dfb580d2d89509bffcb9b059ed2295f6c8a1
+    source:
+      path: calculator-chart
+      repoURL: https://github.com/daniyaalabbas/calculator-cicd.git
+      targetRevision: main
+  - deployStartedAt: "2026-08-03T13:17:06Z"
+    deployedAt: "2026-08-03T13:17:07Z"
+    id: 2
+    initiatedBy:
+      automated: true
+    revision: 573713925338861f0bb3a496c2a9797ae167c355
+    source:
+      path: calculator-chart
+      repoURL: https://github.com/daniyaalabbas/calculator-cicd.git
+      targetRevision: main
+  - deployStartedAt: "2026-08-03T13:31:19Z"
+    deployedAt: "2026-08-03T13:31:19Z"
+    id: 3
+    initiatedBy:
+      automated: true
+    revision: c0830e56367e6a041f9da5dcba5ae548455275ad
+    source:
+      path: calculator-chart
+      repoURL: https://github.com/daniyaalabbas/calculator-cicd.git
+      targetRevision: main
+  operationState:
+    finishedAt: "2026-08-03T13:35:53Z"
+    message: successfully synced (all tasks run)
+    operation:
+      initiatedBy:
+        automated: true
+      retry:
+        limit: 5
+      sync:
+        autoHealAttemptsCount: 6
+        prune: true
+        resources:
+        - group: apps
+          kind: Deployment
+          name: calculator-app
+        revision: c0830e56367e6a041f9da5dcba5ae548455275ad
+        source:
+          path: calculator-chart
+          repoURL: https://github.com/daniyaalabbas/calculator-cicd.git
+          targetRevision: main
+    phase: Succeeded
+    startedAt: "2026-08-03T13:35:53Z"
+    syncResult:
+      resources:
+      - group: apps
+        hookPhase: Running
+        images:
+        - daniyaalabbas/calculator-app:latest
+        kind: Deployment
+        message: deployment.apps/calculator-app configured
+        name: calculator-app
+        namespace: default
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      revision: c0830e56367e6a041f9da5dcba5ae548455275ad
+      source:
+        path: calculator-chart
+        repoURL: https://github.com/daniyaalabbas/calculator-cicd.git
+        targetRevision: main
+  reconciledAt: "2026-08-03T13:35:54Z"
+  resourceHealthSource: appTree
+  resources:
+  - kind: Service
+    name: calculator-app
+    namespace: default
+    status: Synced
+    version: v1
+  - group: apps
+    kind: Deployment
+    name: calculator-app
+    namespace: default
+    status: OutOfSync
+    version: v1
+  sourceHydrator: {}
+  sourceType: Helm
+  summary:
+    images:
+    - daniyaalabbas/calculator-app:latest
+  sync:
+    comparedTo:
+      destination:
+        namespace: default
+        server: https://kubernetes.default.svc
+      source:
+        path: calculator-chart
+        repoURL: https://github.com/daniyaalabbas/calculator-cicd.git
+        targetRevision: main
+    revision: c0830e56367e6a041f9da5dcba5ae548455275ad
+    status: OutOfSync
