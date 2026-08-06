@@ -1,4 +1,4 @@
-replicaCount: 3
+replicaCount: 2
 
 image:
   repository: daniyaalabbas/calculator-app
@@ -29,12 +29,16 @@ livenessProbe:
   httpGet:
     path: /health
     port: 5000
-  initialDelaySeconds: 15
+  initialDelaySeconds: 30
   periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 5
 
 readinessProbe:
   httpGet:
     path: /health
     port: 5000
-  initialDelaySeconds: 5
+  initialDelaySeconds: 15
   periodSeconds: 5
+  timeoutSeconds: 5
+  failureThreshold: 5
