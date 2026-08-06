@@ -1,5 +1,10 @@
 #!/bin/bash
 
+##This is a script to check day to day activity for devops#
+#save it and use in ur machine#
+
+
+
 clear
 
 # Colors
