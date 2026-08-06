@@ -1,4 +1,4 @@
-replicaCount: 3
+replicaCount: 4
 
 image:
   repository: daniyaalabbas/calculator-app
@@ -18,7 +18,7 @@ resources:
     memory: "256Mi"
 
 config:
-  APP_TITLE: "AI - Calculator v3🚀"
+  APP_TITLE: "AI - Calculator v4🚀"
   ENVIRONMENT: "Development"
 
 secret:
