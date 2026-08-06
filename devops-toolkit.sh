@@ -1,9 +1,9 @@
 #!/bin/bash
 
-##This is a script to check day to day activity for devops#
-#save it and use in ur machine#
-
-
+# DevOps Toolkit
+# A simple utility script for common day-to-day DevOps tasks.
+# Author: Mohammed Abbas Ali
+# GitHub: https://github.com/daniyaalabbas
 
 clear
 
